@@ -5491,21 +5491,16 @@ async function exportarPDF() {
         btn.innerText = '⏳ Gerando PDF...';
         btn.disabled = true;
         
-        if (typeof window.jspdf === 'undefined') {
-            alert('❌ Biblioteca jsPDF não carregada.');
-            btn.innerText = textoOriginal;
-            btn.disabled = false;
-            return;
+        // Verifica se as bibliotecas estão carregadas
+        if (typeof window.jspdf === 'undefined' && typeof window.jsPDF === 'undefined') {
+            throw new Error('Biblioteca jsPDF não carregada');
         }
         
-        const { jsPDF } = window.jspdf;
+        const { jsPDF } = window.jspdf || window.jsPDF;
         
         const tabela = document.getElementById('tabelaRelatorio');
         if (!tabela) {
-            alert('❌ Tabela não encontrada');
-            btn.innerText = textoOriginal;
-            btn.disabled = false;
-            return;
+            throw new Error('Tabela não encontrada');
         }
         
         const linhas = tabela.getElementsByTagName('tr');
@@ -5516,6 +5511,7 @@ async function exportarPDF() {
             return;
         }
         
+        // Cria o documento PDF
         const doc = new jsPDF({
             orientation: 'landscape',
             unit: 'mm',
@@ -5523,20 +5519,23 @@ async function exportarPDF() {
         });
         
         const almox = document.getElementById('almoxarifado').value;
-        const dataAtual = new Date().toLocaleDateString('pt-BR');
-        const horaAtual = new Date().toLocaleTimeString('pt-BR');
+        const dataAtual = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+        const horaAtual = new Date().toLocaleTimeString('pt-BR').replace(/:/g, '-');
+        const dataHora = new Date().toLocaleString('pt-BR').replace(/[\/: ]/g, '-');
         
+        // Cabeçalho
         doc.setFontSize(16);
         doc.setTextColor(30, 58, 90);
         doc.text(`RELATÓRIO DE INVENTÁRIO - ${almox.toUpperCase()}`, 14, 15);
         
         doc.setFontSize(10);
         doc.setTextColor(100, 116, 139);
-        doc.text(`Data/Hora: ${dataAtual} ${horaAtual}`, 14, 22);
+        doc.text(`Data/Hora: ${dataAtual.replace(/-/g, '/')} ${horaAtual.replace(/-/g, ':')}`, 14, 22);
         
         const inventariante = document.getElementById('inventariante').value || 'Não informado';
         doc.text(`Inventariante: ${inventariante}`, 14, 27);
         
+        // Prepara os dados da tabela
         const cabecalhos = [];
         const ths = linhas[0].getElementsByTagName('th');
         for (let i = 0; i < ths.length - 1; i++) {
@@ -5554,6 +5553,7 @@ async function exportarPDF() {
             dados.push(linha);
         }
         
+        // Gera a tabela
         if (typeof doc.autoTable === 'function') {
             doc.autoTable({
                 head: [cabecalhos],
@@ -5570,43 +5570,80 @@ async function exportarPDF() {
             });
         }
         
-        const nomeArquivo = `inventario_${almox.replace(/\s+/g, '_')}_${dataAtual.replace(/\//g, '-')}.pdf`;
+        // Nome do arquivo
+        const nomeArquivo = `inventario_${almox.replace(/\s+/g, '_')}_${dataHora}.pdf`;
         
-        if (CapacitorPlugins.isAvailable && CapacitorPlugins.Filesystem && CapacitorPlugins.Directory) {
-            const temPermissao = await verificarPermissaoAndroid();
-            if (!temPermissao) {
-                btn.innerText = textoOriginal;
-                btn.disabled = false;
-                return;
-            }
-            
+        // VERIFICA SE ESTÁ NO ANDROID (CAPACITOR)
+        if (CapacitorPlugins.isAvailable && CapacitorPlugins.Filesystem) {
             try {
+                // Converte o PDF para base64
                 const pdfBase64 = doc.output('datauristring').split(',')[1];
                 
+                // Define o diretório (Documents é mais acessível)
+                const directory = CapacitorPlugins.Directory.Documents || 
+                                 CapacitorPlugins.Directory.External || 
+                                 CapacitorPlugins.Directory.Data;
+                
+                console.log('📁 Salvando em:', directory);
+                
+                // Salva o arquivo
                 const result = await CapacitorPlugins.Filesystem.writeFile({
                     path: nomeArquivo,
                     data: pdfBase64,
-                    directory: CapacitorPlugins.Directory.Documents,
+                    directory: directory,
                     recursive: true
                 });
                 
-                if (confirm(`✅ PDF salvo com sucesso!\n\nCompartilhar?`)) {
-                    await compartilharArquivo(result.uri, nomeArquivo, 'pdf');
+                console.log('✅ Arquivo salvo:', result);
+                
+                // Mostra mensagem de sucesso com opção de compartilhar
+                if (confirm(`✅ PDF salvo com sucesso!\n\n📁 Local: ${directory}/${nomeArquivo}\n\nDeseja compartilhar o arquivo agora?`)) {
+                    try {
+                        await CapacitorPlugins.Share.share({
+                            title: 'Compartilhar PDF',
+                            text: `Inventário - ${almox}`,
+                            url: result.uri,
+                            dialogTitle: 'Compartilhar via'
+                        });
+                    } catch (shareError) {
+                        console.log('Compartilhamento cancelado ou erro:', shareError);
+                        alert(`✅ Arquivo disponível em:\n${directory}/${nomeArquivo}`);
+                    }
                 }
                 
             } catch (error) {
-                console.error('Erro ao salvar PDF:', error);
-                if (confirm('❌ Erro ao salvar. Deseja baixar no navegador?')) {
-                    doc.save(nomeArquivo);
+                console.error('❌ Erro ao salvar no Android:', error);
+                
+                // Se falhou, tenta com outro diretório
+                try {
+                    console.log('🔄 Tentando com diretório alternativo...');
+                    
+                    const result = await CapacitorPlugins.Filesystem.writeFile({
+                        path: nomeArquivo,
+                        data: doc.output('datauristring').split(',')[1],
+                        directory: CapacitorPlugins.Directory.ExternalStorage || CapacitorPlugins.Directory.Cache,
+                        recursive: true
+                    });
+                    
+                    alert(`✅ PDF salvo em armazenamento externo!\n\n📁 ${result.uri}`);
+                    
+                } catch (fallbackError) {
+                    console.error('❌ Fallback também falhou:', fallbackError);
+                    
+                    // Último recurso: tenta baixar via navegador
+                    if (confirm('❌ Erro ao salvar no dispositivo. Deseja baixar no navegador?')) {
+                        doc.save(nomeArquivo);
+                    }
                 }
             }
         } else {
+            // Se não for Android (navegador web)
             doc.save(nomeArquivo);
             alert(`✅ PDF gerado: ${nomeArquivo}`);
         }
         
     } catch (error) {
-        console.error('Erro ao gerar PDF:', error);
+        console.error('❌ Erro ao gerar PDF:', error);
         alert('❌ Erro: ' + error.message);
     } finally {
         const btn = event?.target || document.querySelector('.btn-pdf');
@@ -5617,6 +5654,22 @@ async function exportarPDF() {
     }
 }
 
+// Função auxiliar para carregar bibliotecas dinamicamente
+function carregarBibliotecaPDF() {
+    return new Promise((resolve, reject) => {
+        const script1 = document.createElement('script');
+        script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        script1.onload = () => {
+            const script2 = document.createElement('script');
+            script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js';
+            script2.onload = resolve;
+            script2.onerror = reject;
+            document.head.appendChild(script2);
+        };
+        script1.onerror = reject;
+        document.head.appendChild(script1);
+    });
+}
 // ============================================
 // FUNÇÃO PARA ABRIR ARQUIVO (opcional)
 // ============================================
