@@ -3,7 +3,7 @@
   "appName": "ACheck",
   "webDir": "www",
   "server": {
-    "url": "http://192.168.15.11:5173/",
+    "url": "https://fantola88.github.io/ACheck/",
     "cleartext": true
   }
 }
