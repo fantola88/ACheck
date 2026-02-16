@@ -305,17 +305,6 @@ td {
     color: #b91c1c;
 }
 
-.titulo-com-acao {
-    display: flex;
-    justify-content: space-between;
-    gap: 0px;
-    margin-bottom: 0px;
-}
-
-.titulo-com-acao h2 {
-    margin: 0;
-}
-
 .item-sugestao.highlight {
     background: #e2e8f0;
 }
@@ -438,124 +427,349 @@ td {
 .inventariantes-list {
     max-height: 400px;
     overflow-y: auto;
-    padding: 5px;
+    padding: 8px;
+    gap: 8px;
 }
 
 .inventariante-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    background: var(--gray-100);
-    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
     transition: all 0.2s ease;
-    border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .inventariante-item:hover {
     background: white;
-    border-color: var(--primary-light);
+    border-color: var(--primary);
     transform: translateX(5px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(30,58,90,0.15);
 }
 
 .inventariante-info {
     flex: 1;
+    pointer-events: none; /* Permite clique no item todo */
 }
 
 .inventariante-nome {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--primary);
-    font-size: 0.95rem;
+    font-size: 1rem;
+    margin-bottom: 6px;
 }
 
 .inventariante-detalhe {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    margin-top: 2px;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 4px;
 }
 
 .inventariante-acoes {
     display: flex;
-    gap: 6px;
+    gap: 10px;
     align-items: center;
+    pointer-events: auto; /* Mantém os botões clicáveis */
 }
 
+/* Botões de ação maiores e mais bonitos */
 .btn-icon {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: all 0.2s ease;
     background: white;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .btn-icon:hover {
     transform: scale(1.1);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .btn-edit {
     color: var(--primary);
-    border: 1px solid var(--primary-light);
+    border: 2px solid #e2e8f0;
 }
 
 .btn-edit:hover {
     background: var(--primary);
     color: white;
+    border-color: var(--primary);
 }
 
 .btn-delete {
-    color: var(--danger);
-    border: 1px solid var(--danger);
+    color: var(--accent);
+    border: 2px solid #fecdd3;
 }
 
 .btn-delete:hover {
-    background: var(--danger);
+    background: var(--accent);
     color: white;
+    border-color: var(--accent);
 }
 
-/* Badge de contagem */
-.inventariante-badge {
-    background: var(--primary);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 50px;
-    font-size: 0.7rem;
+/* Sugestões de inventariantes - mais espaçadas */
+.sugestoes-container.visivel {
+    display: block;
+    padding: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 8px 24px rgba(30,58,90,0.2);
+}
+
+.item-sugestao {
+    padding: 14px 16px;
+    margin: 4px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+}
+
+.item-sugestao:hover {
+    background: #f0f9ff;
+    transform: translateX(5px);
+    border-color: var(--primary);
+}
+
+.item-sugestao.highlight {
+    background: #e2e8f0;
+}
+
+.codigo-destaque {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.nome-destaque {
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+.unidade-sugestao {
+    font-size: 0.8rem;
+    color: #64748b;
     margin-left: 8px;
 }
 
-/* Header do painel */
+.sem-resultados {
+    padding: 20px;
+    text-align: center;
+    color: #64748b;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* ===== BOTÃO LIXEIRA MELHORADO ===== */
+.titulo-com-acao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 15px 0;
+    padding: 0;
+    width: 100%;
+    min-height: 48px; /* Altura mínima para garantir alinhamento */
+}
+
+.titulo-com-acao h2 {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.btn-lixeira {
+    background: #fff1f2;
+    border: 2px solid #fecdd3;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-lixeira svg {
+    width: 26px;
+    height: 26px;
+    color: var(--accent);
+    transition: 0.3s;
+    display: block;
+    position: absolute;
+    top: 59%;
+    left: 59%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+}
+
+.btn-lixeira:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(211,47,47,0.3);
+}
+
+.btn-lixeira:hover svg {
+    color: white;
+    transform: translate(-50%, -50%) rotate(5deg) scale(1.1);
+}
+
+/* Modal do inventariante melhorado */
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-body .field {
+    margin-bottom: 20px;
+}
+
+.modal-body label {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.modal-body input {
+    padding: 14px 16px;
+    font-size: 1rem;
+}
+
+.modal-footer {
+    padding: 20px 24px;
+    border-top: 2px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.btn-cancelar {
+    padding: 14px 24px;
+    background: #f1f5f9;
+    color: var(--text);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.btn-cancelar:hover {
+    background: #e2e8f0;
+}
+
+.btn-add-inventariante {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.btn-add-inventariante:hover {
+    background: #b71c1c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(211,47,47,0.3);
+}
+
+/* Badge de contagem melhorado */
+.inventariante-badge {
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* Header do painel melhorado */
 .painel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 2px solid var(--gray-200);
+    border-bottom: 2px solid #e2e8f0;
 }
 
 .painel-header h3 {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin: 0;
 }
 
 .painel-header h3 span {
     background: var(--accent);
     color: white;
-    padding: 2px 10px;
+    padding: 4px 14px;
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.btn-fechar-painel {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.btn-fechar-painel:hover {
+    background: #f1f5f9;
+    border-color: var(--accent);
+    transform: rotate(90deg);
 }
 
 /* Adicione ao final do CSS */
@@ -694,10 +908,13 @@ td {
 </div>
 
 <!-- Lista de inventariantes cadastrados (para gerenciamento) -->
-<div id="painelInventariantes" class="card" style="display: none; margin-top: 10px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <h3 style="margin: 0;">📋 Inventariantes Cadastrados</h3>
-        <button class="btn-fechar-painel" onclick="fecharPainelInventariantes()" style="background: none; border: none; font-size: 20px; cursor: pointer;">×</button>
+<div id="painelInventariantes" class="card" style="display: none; margin-top: 15px;">
+    <div class="painel-header">
+        <h3>
+            📋 Inventariantes Cadastrados
+            <span id="contadorInventariantes" class="inventariante-badge">0</span>
+        </h3>
+        <button class="btn-fechar-painel" onclick="fecharPainelInventariantes()" title="Fechar">×</button>
     </div>
     <div id="listaInventariantesCadastrados" class="inventariantes-list"></div>
 </div>
@@ -829,41 +1046,105 @@ td {
 </div>
 
 <script>
-    // ============================================
-    // INICIALIZAÇÃO SEGURA DO CAPACITOR
-    // ============================================
-    let CapacitorPlugins = {
-        Filesystem: null,
-        Directory: null,
-        Share: null,
-        isAvailable: false
-    };
+// ============================================
+// INICIALIZAÇÃO SEGURA DO CAPACITOR - CORRIGIDA
+// ============================================
+let CapacitorPlugins = {
+    Filesystem: null,
+    Directory: null,
+    Share: null,
+    isAvailable: false
+};
 
-    // Verifica se o Capacitor está disponível (para Android)
-    function initCapacitor() {
-        if (typeof Capacitor !== 'undefined' && Capacitor) {
-            try {
-                CapacitorPlugins.Filesystem = Capacitor.Plugins.Filesystem;
-                CapacitorPlugins.Share = Capacitor.Plugins.Share;
-                CapacitorPlugins.Directory = CapacitorPlugins.Filesystem ? CapacitorPlugins.Filesystem.Directory : null;
-                CapacitorPlugins.isAvailable = true;
-                console.log('✅ Capacitor inicializado com sucesso!');
-            } catch (error) {
-                console.warn('⚠️ Erro ao inicializar Capacitor:', error);
-                CapacitorPlugins.isAvailable = false;
+// Verifica se o Capacitor está disponível (para Android)
+function initCapacitor() {
+    if (typeof Capacitor !== 'undefined' && Capacitor) {
+        try {
+            CapacitorPlugins.Filesystem = Capacitor.Plugins.Filesystem;
+            CapacitorPlugins.Share = Capacitor.Plugins.Share;
+            
+            // CORREÇÃO: Verifica se Filesystem existe e tem Directory
+            if (CapacitorPlugins.Filesystem) {
+                // O Directory é um enum, precisamos importar corretamente
+                // Verifica se há Directory no objeto Filesystem
+                if (CapacitorPlugins.Filesystem.Directory) {
+                    CapacitorPlugins.Directory = CapacitorPlugins.Filesystem.Directory;
+                } else if (typeof Capacitor.FilesystemDirectory !== 'undefined') {
+                    // Alternativa: algumas versões do Capacitor exportam separadamente
+                    CapacitorPlugins.Directory = Capacitor.FilesystemDirectory;
+                } else {
+                    // Fallback: define manualmente os valores do enum Directory
+                    CapacitorPlugins.Directory = {
+                        Documents: 'DOCUMENTS',
+                        Data: 'DATA',
+                        Cache: 'CACHE',
+                        External: 'EXTERNAL',
+                        ExternalStorage: 'EXTERNAL_STORAGE'
+                    };
+                    console.log('ℹ️ Directory definido manualmente como fallback');
+                }
             }
-        } else {
-            console.log('ℹ️ Capacitor não detectado - rodando em modo navegador');
+            
+            CapacitorPlugins.isAvailable = true;
+            console.log('✅ Capacitor inicializado com sucesso!');
+            console.log('📁 Directory disponível:', CapacitorPlugins.Directory ? 'Sim' : 'Não');
+        } catch (error) {
+            console.warn('⚠️ Erro ao inicializar Capacitor:', error);
             CapacitorPlugins.isAvailable = false;
         }
+    } else {
+        console.log('ℹ️ Capacitor não detectado - rodando em modo navegador');
+        CapacitorPlugins.isAvailable = false;
     }
-
+}
     // Chama a inicialização após o carregamento da página
     document.addEventListener('DOMContentLoaded', () => {
         initCapacitor();
         document.getElementById('dataInventario').valueAsDate = new Date();
         atualizarListas();
     });
+
+    // Adicione logo após a inicialização do Capacitor
+function verificarBibliotecas() {
+    console.log('Verificando bibliotecas:');
+    console.log('XLSX:', typeof XLSX);
+    console.log('jspdf:', typeof window.jspdf);
+    console.log('autoTable:', typeof window.jspdf?.autoTable);
+    
+    setTimeout(() => {
+        if (typeof XLSX === 'undefined') {
+            console.warn('⚠️ XLSX não carregada - Excel não funcionará');
+        } else {
+            console.log('✅ XLSX carregada');
+        }
+        
+        if (typeof window.jspdf === 'undefined') {
+            console.warn('⚠️ jsPDF não carregada - PDF não funcionará');
+        } else {
+            console.log('✅ jsPDF carregada');
+        }
+        
+        if (typeof window.jspdf?.autoTable === 'undefined') {
+            console.warn('⚠️ autoTable não carregado - Tabelas no PDF podem não funcionar');
+        } else {
+            console.log('✅ autoTable carregado');
+        }
+    }, 1000);
+}
+
+// Chame esta função no DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    initCapacitor();
+    verificarBibliotecas(); // <-- Adicione esta linha
+    atualizarListas();
+    atualizarDatalistInventariantes();
+    
+    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+    }
+    
+    console.log('✅ ACheck inicializado com sucesso!');
+});
 
     // ============================================
     // BASE DE DADOS INTEGRADA (resumida para exemplo)
@@ -4459,19 +4740,15 @@ function salvarNoRelatorio() {
 }
 
 // ============================================
-// GERENCIAMENTO DE INVENTARIANTES - CORRIGIDO
+// GERENCIAMENTO DE INVENTARIANTES - COM LISTA PADRÃO
 // ============================================
 
-// Lista de inventariantes (inicial)
+// Lista de inventariantes (inicial) - COM CARGOS E SETORES
 let inventariantes = [
-    "João Silva",
-    "Maria Oliveira",
-    "Carlos Santos",
-    "Ana Pereira",
-    "Paulo Souza",
-    "Lucia Mendes",
-    "Roberto Costa",
-    "Fernanda Lima"
+    "Alan Paulino (Coordenador - Coasal)",
+    "Anderson Palma (Analista - SAPF)",
+    "Gustavo de Jesus (Almoxarife - Coasal)",
+    "João Neto (Assistente Parlamentar - Sealmx)"
 ];
 
 // Cache para busca
@@ -4510,9 +4787,21 @@ function filtrarInventariantes() {
             filtrados.slice(0, 10).forEach(inv => {
                 const item = document.createElement('div');
                 item.className = 'item-sugestao';
+                
+                // Destaca o termo pesquisado
                 const regex = new RegExp(`(${termo})`, 'gi');
                 const textoDestacado = inv.replace(regex, '<span style="background: #fbbf24; font-weight: bold;">$1</span>');
-                item.innerHTML = textoDestacado;
+                
+                // Separa nome e detalhes para exibição formatada
+                if (inv.includes('(')) {
+                    const [nome, detalhes] = inv.split(' (');
+                    item.innerHTML = `
+                        <span style="font-weight: bold; color: var(--primary);">${nome.replace(regex, '<span style="background: #fbbf24; font-weight: bold;">$1</span>')}</span>
+                        <span style="color: #64748b; font-size: 0.8rem;"> (${detalhes.replace(')', '').replace(regex, '<span style="background: #fbbf24; font-weight: bold;">$1</span>')})</span>
+                    `;
+                } else {
+                    item.innerHTML = textoDestacado;
+                }
                 
                 item.onclick = () => {
                     input.value = inv;
@@ -4536,7 +4825,7 @@ function filtrarInventariantes() {
 function mostrarTodosInventariantes() {
     const input = document.getElementById('inventariante');
     const container = document.getElementById('sugestoes-inventariante');
-    const containerPai = input.closest('.field'); // Pega o container pai com position relative
+    const containerPai = input.closest('.field');
     
     if (!container || !containerPai) return;
     
@@ -4555,7 +4844,18 @@ function mostrarTodosInventariantes() {
         listaOrdenada.slice(0, 15).forEach(inv => {
             const item = document.createElement('div');
             item.className = 'item-sugestao';
-            item.textContent = inv;
+            
+            // Formata a exibição
+            if (inv.includes('(')) {
+                const [nome, detalhes] = inv.split(' (');
+                item.innerHTML = `
+                    <span style="font-weight: bold; color: var(--primary);">${nome}</span>
+                    <span style="color: #64748b; font-size: 0.8rem;"> (${detalhes.replace(')', '')})</span>
+                `;
+            } else {
+                item.textContent = inv;
+            }
+            
             item.onclick = () => {
                 input.value = inv;
                 container.classList.remove('visivel');
@@ -4565,17 +4865,21 @@ function mostrarTodosInventariantes() {
         });
     }
     
-    // Posiciona o container RELATIVO ao container pai
     container.style.top = 'calc(100% + 2px)';
     container.style.left = '0';
-    
     container.classList.add('visivel');
 }
 
+// Atualiza também a função selecionarInventariante
 function selecionarInventariante(nome) {
     document.getElementById('inventariante').value = nome;
     document.getElementById('sugestoes-inventariante').classList.remove('visivel');
     atualizarDatalistInventariantes();
+    
+    // Fecha o painel automaticamente após selecionar
+    setTimeout(() => {
+        fecharPainelInventariantes();
+    }, 300);
 }
 
 function abrirModalInventariante() {
@@ -4600,6 +4904,7 @@ function salvarNovoInventariante() {
         return;
     }
     
+    // Formata o nome com primeira letra maiúscula de cada palavra
     const nomeFormatado = nome.split(' ')
         .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase())
         .join(' ');
@@ -4622,7 +4927,6 @@ function salvarNovoInventariante() {
     
     document.getElementById('inventariante').value = nomeCompleto;
     
-    // ATUALIZA AS DUAS LISTAS (datalist e sugestões)
     atualizarDatalistInventariantes();
     
     fecharModalInventariante();
@@ -4649,7 +4953,6 @@ function atualizarDatalistInventariantes() {
         datalist.appendChild(option);
     });
     
-    // Atualiza também o array de filtrados
     inventariantesFiltrados = [...inventariantes];
 }
 
@@ -4663,16 +4966,23 @@ function forcarAtualizacaoListaInventariantes() {
 function mostrarPainelInventariantes() {
     const painel = document.getElementById('painelInventariantes');
     const lista = document.getElementById('listaInventariantesCadastrados');
+    const contador = document.getElementById('contadorInventariantes');
     
     if (!painel || !lista) return;
     
+    // Atualiza contador
+    if (contador) {
+        contador.textContent = inventariantes.length;
+    }
+    
     if (inventariantes.length === 0) {
         lista.innerHTML = `
-            <div style="text-align: center; padding: 30px; color: var(--text-light);">
-                <div style="font-size: 3rem; margin-bottom: 10px;">👤</div>
-                <p>Nenhum inventariante cadastrado</p>
-                <button class="btn btn-accent" onclick="abrirModalInventariante()" style="margin-top: 15px;">
-                    + Adicionar Primeiro
+            <div style="text-align: center; padding: 40px 20px; color: #64748b;">
+                <div style="font-size: 4rem; margin-bottom: 15px;">👤</div>
+                <p style="font-size: 1.1rem; margin-bottom: 10px;">Nenhum inventariante cadastrado</p>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px;">Clique no botão + para adicionar</p>
+                <button class="btn-salvar" onclick="abrirModalInventariante()" style="width: auto; padding: 14px 30px; font-size: 1rem;">
+                    ➕ Adicionar Primeiro
                 </button>
             </div>
         `;
@@ -4680,38 +4990,32 @@ function mostrarPainelInventariantes() {
         lista.innerHTML = inventariantes
             .sort()
             .map((inv, index) => {
-                // Verifica se tem detalhes (cargo/setor entre parênteses)
-                const temDetalhes = inv.includes('(');
                 let nome = inv;
                 let detalhe = '';
                 
-                if (temDetalhes) {
+                if (inv.includes('(')) {
                     const partes = inv.split(' (');
                     nome = partes[0];
                     detalhe = partes[1].replace(')', '');
                 }
                 
-                // Escape de aspas para o JavaScript
                 const invEscaped = inv.replace(/'/g, "\\'");
                 
                 return `
-                    <div class="inventariante-item" style="animation: slideIn 0.3s ease ${index * 0.05}s both;">
+                    <div class="inventariante-item" onclick="selecionarInventariante('${invEscaped}')">
                         <div class="inventariante-info">
-                            <div class="inventariante-nome">
-                                ${nome}
-                                <span class="inventariante-badge">#${index + 1}</span>
-                            </div>
+                            <div class="inventariante-nome">${nome}</div>
                             ${detalhe ? `<div class="inventariante-detalhe">${detalhe}</div>` : ''}
                         </div>
                         <div class="inventariante-acoes">
                             <button class="btn-icon btn-edit" 
-                                    onclick="editarInventariante('${invEscaped}')" 
-                                    title="Editar inventariante">
+                                    onclick="event.stopPropagation(); editarInventariante('${invEscaped}')" 
+                                    title="Editar">
                                 ✏️
                             </button>
                             <button class="btn-icon btn-delete" 
-                                    onclick="removerInventariante('${invEscaped}')" 
-                                    title="Remover inventariante">
+                                    onclick="event.stopPropagation(); removerInventariante('${invEscaped}')" 
+                                    title="Remover">
                                 🗑️
                             </button>
                         </div>
@@ -4722,26 +5026,8 @@ function mostrarPainelInventariantes() {
     }
     
     painel.style.display = 'block';
-    
-    // Scroll suave até o painel
     painel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-
-// Adicione esta animação CSS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-`;
-document.head.appendChild(style);
 
 function fecharPainelInventariantes() {
     document.getElementById('painelInventariantes').style.display = 'none';
@@ -4767,8 +5053,9 @@ function editarInventariante(nomeAntigo) {
     modalEdit.style.display = 'flex';
     modalEdit.innerHTML = `
         <div class="modal-content">
-            <div class="modal-header" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+            <div class="modal-header" style="background: #1e3a5a;">
                 <h3>✏️ Editar Inventariante</h3>
+                <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
             </div>
             <div class="modal-body">
                 <div class="field">
@@ -4777,16 +5064,16 @@ function editarInventariante(nomeAntigo) {
                 </div>
                 <div class="field">
                     <label>Cargo (opcional)</label>
-                    <input type="text" id="editCargo" value="${cargoAtual}" placeholder="Ex: Almoxarife, Auditor...">
+                    <input type="text" id="editCargo" value="${cargoAtual}" placeholder="Ex: Coordenador, Analista...">
                 </div>
                 <div class="field">
                     <label>Setor (opcional)</label>
-                    <input type="text" id="editSetor" value="${setorAtual}" placeholder="Ex: Almoxarifado Central...">
+                    <input type="text" id="editSetor" value="${setorAtual}" placeholder="Ex: Coasal, SAPF, Sealmx...">
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn" onclick="this.closest('.modal').remove()" style="background: var(--gray-200);">Cancelar</button>
-                <button class="btn btn-primary" onclick="salvarEdicao('${nomeAntigo.replace(/'/g, "\\'")}')">Salvar</button>
+                <button class="btn-cancelar" onclick="this.closest('.modal').remove()">Cancelar</button>
+                <button class="btn-salvar" onclick="salvarEdicao('${nomeAntigo.replace(/'/g, "\\'")}')">Salvar</button>
             </div>
         </div>
     `;
@@ -4829,6 +5116,8 @@ function salvarEdicao(nomeAntigo) {
         if (document.getElementById('inventariante').value === nomeAntigo) {
             document.getElementById('inventariante').value = nomeCompleto;
         }
+        
+        alert(`✅ Inventariante atualizado com sucesso!\n\n${nomeCompleto}`);
     }
     
     // Fecha o modal
@@ -4836,75 +5125,73 @@ function salvarEdicao(nomeAntigo) {
 }
 
 function removerInventariante(nome) {
-    // Criar um modal de confirmação personalizado
-    const confirmacao = document.createElement('div');
-    confirmacao.className = 'modal';
-    confirmacao.style.display = 'flex';
-    confirmacao.innerHTML = `
-        <div class="modal-content" style="max-width: 350px;">
-            <div class="modal-header" style="background: linear-gradient(135deg, var(--danger), #b91c1c);">
-                <h3>⚠️ Confirmar Remoção</h3>
-            </div>
-            <div class="modal-body" style="text-align: center; padding: 30px;">
-                <div style="font-size: 3rem; margin-bottom: 15px;">🗑️</div>
-                <p style="margin-bottom: 20px; font-size: 1.1rem;">
-                    Remover <strong>"${nome}"</strong>?
-                </p>
-                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 25px;">
-                    Esta ação não poderá ser desfeita.
-                </p>
-            </div>
-            <div class="modal-footer" style="justify-content: center;">
-                <button class="btn" onclick="this.closest('.modal').remove()" 
-                        style="background: var(--gray-200); padding: 12px 25px;">
-                    Cancelar
-                </button>
-                <button class="btn btn-accent" onclick="confirmarRemocao('${nome.replace(/'/g, "\\'")}'); this.closest('.modal').remove()" 
-                        style="background: var(--danger); padding: 12px 25px;">
-                    Sim, Remover
-                </button>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(confirmacao);
+    if (confirm(`⚠️ Tem certeza que deseja remover "${nome}"?`)) {
+        const index = inventariantes.indexOf(nome);
+        if (index !== -1) {
+            inventariantes.splice(index, 1);
+            atualizarDatalistInventariantes();
+            
+            // Atualiza o painel se estiver aberto
+            const painel = document.getElementById('painelInventariantes');
+            if (painel.style.display === 'block') {
+                mostrarPainelInventariantes();
+            }
+            
+            // Se o inventariante atual for o removido, limpa o campo
+            if (document.getElementById('inventariante').value === nome) {
+                document.getElementById('inventariante').value = '';
+            }
+            
+            // Mostra feedback visual
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 10px;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                animation: slideInRight 0.3s ease;
+                z-index: 9999;
+            `;
+            toast.textContent = `✅ "${nome}" removido com sucesso!`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    }
 }
 
 function confirmarRemocao(nome) {
-    const index = inventariantes.indexOf(nome);
-    if (index !== -1) {
-        inventariantes.splice(index, 1);
-        atualizarDatalistInventariantes();
-        mostrarPainelInventariantes();
-        
-        // Se o inventariante atual for o removido, limpa o campo
-        if (document.getElementById('inventariante').value === nome) {
-            document.getElementById('inventariante').value = '';
-        }
-        
-        // Feedback visual rápido
-        const toast = document.createElement('div');
-        toast.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--success);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            box-shadow: var(--shadow-lg);
-            animation: slideInRight 0.3s ease;
-            z-index: 9999;
-        `;
-        toast.textContent = `✅ "${nome}" removido com sucesso!`;
-        document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
-    }
+    removerInventariante(nome);
 }
+
+// Event listeners para fechar listas
+document.addEventListener('click', function(e) {
+    const container = document.getElementById('sugestoes-inventariante');
+    const input = document.getElementById('inventariante');
+    
+    if (container && !input.contains(e.target) && !container.contains(e.target)) {
+        container.classList.remove('visivel');
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        fecharModalInventariante();
+        fecharPainelInventariantes();
+        const container = document.getElementById('sugestoes-inventariante');
+        if (container) {
+            container.classList.remove('visivel');
+        }
+    }
+});
 
 // Animações para o toast
 const toastStyle = document.createElement('style');
@@ -4955,6 +5242,409 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ============================================
+// FUNÇÕES DE EXPORTAÇÃO - CORRIGIDAS
+// ============================================
+
+// Função auxiliar para verificar permissões no Android
+async function verificarPermissaoAndroid() {
+    if (!CapacitorPlugins.isAvailable) return true;
+    
+    try {
+        // Verifica se o Filesystem e Directory estão disponíveis
+        if (!CapacitorPlugins.Filesystem || !CapacitorPlugins.Directory) {
+            console.error('Filesystem ou Directory não disponíveis');
+            return false;
+        }
+        
+        // Para Android, tenta escrever um arquivo de teste
+        try {
+            // Tenta criar um arquivo de teste
+            await CapacitorPlugins.Filesystem.writeFile({
+                path: `Download/test_permission.txt`,
+                data: 'test',
+                directory: CapacitorPlugins.Directory.External, // Agora deve funcionar
+                recursive: true
+            });
+            
+            // Se conseguiu escrever, remove o arquivo de teste
+            await CapacitorPlugins.Filesystem.deleteFile({
+                path: `Download/test_permission.txt`,
+                directory: CapacitorPlugins.Directory.External
+            });
+            
+            console.log('✅ Permissão de armazenamento OK');
+            return true;
+            
+        } catch (writeError) {
+            console.error('Erro ao escrever arquivo de teste:', writeError);
+            
+            // Tenta com ExternalStorage como fallback
+            try {
+                await CapacitorPlugins.Filesystem.writeFile({
+                    path: `test_permission.txt`,
+                    data: 'test',
+                    directory: CapacitorPlugins.Directory.ExternalStorage || CapacitorPlugins.Directory.Documents,
+                    recursive: true
+                });
+                
+                await CapacitorPlugins.Filesystem.deleteFile({
+                    path: `test_permission.txt`,
+                    directory: CapacitorPlugins.Directory.ExternalStorage || CapacitorPlugins.Directory.Documents
+                });
+                
+                console.log('✅ Permissão OK (usando ExternalStorage)');
+                return true;
+                
+            } catch (fallbackError) {
+                throw writeError; // Lança o erro original
+            }
+        }
+        
+    } catch (error) {
+        console.error('Erro de permissão:', error);
+        
+        // Se for erro de permissão, mostra instruções
+        if (error.message.includes('PERMISSION_DENIED') || 
+            error.message.includes('Permission denied') ||
+            error.message.includes('EACCES')) {
+            
+            if (confirm(
+                '📱 Permissão de armazenamento necessária!\n\n' +
+                'O ACheck precisa de permissão para salvar arquivos no seu celular.\n\n' +
+                '1. Abra as Configurações do Android\n' +
+                '2. Vá em "Aplicativos" > "ACheck"\n' +
+                '3. Toque em "Permissões"\n' +
+                '4. Ative "Arquivos e mídia"\n\n' +
+                'Após conceder a permissão, clique em OK para tentar novamente.'
+            )) {
+                return false;
+            }
+        }
+        
+        alert('❌ Erro ao acessar armazenamento: ' + error.message);
+        return false;
+    }
+}
+
+// Função para mostrar diálogo de compartilhamento
+async function compartilharArquivo(uri, nomeArquivo, tipo) {
+    if (!CapacitorPlugins.isAvailable || !CapacitorPlugins.Share) {
+        alert(`✅ Arquivo salvo em:\nDownload/${nomeArquivo}`);
+        return;
+    }
+    
+    try {
+        await CapacitorPlugins.Share.share({
+            title: `Compartilhar ${tipo === 'excel' ? 'planilha' : 'PDF'}`,
+            text: `Arquivo de inventário: ${nomeArquivo}`,
+            url: uri,
+            dialogTitle: 'Compartilhar via...'
+        });
+    } catch (error) {
+        console.error('Erro ao compartilhar:', error);
+        if (!error.message.includes('canceled')) {
+            alert(`✅ Arquivo salvo em:\nDownload/${nomeArquivo}`);
+        }
+    }
+}
+
+async function exportarExcel() {
+    try {
+        const btn = event?.target || document.querySelector('.btn-excel');
+        if (!btn) return;
+        
+        const textoOriginal = btn.innerText;
+        btn.innerText = '⏳ Gerando Excel...';
+        btn.disabled = true;
+        
+        if (typeof XLSX === 'undefined') {
+            alert('❌ Biblioteca XLSX não carregada.');
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+            return;
+        }
+
+        const tabela = document.getElementById('tabelaRelatorio');
+        if (!tabela) {
+            alert('❌ Tabela não encontrada');
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+            return;
+        }
+        
+        const linhas = tabela.getElementsByTagName('tr');
+        if (linhas.length <= 1) {
+            alert('⚠️ Não há dados no relatório');
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+            return;
+        }
+        
+        // Coleta os dados
+        const dados = [];
+        const cabecalhos = [];
+        
+        const ths = linhas[0].getElementsByTagName('th');
+        for (let i = 0; i < ths.length - 1; i++) {
+            cabecalhos.push(ths[i].innerText);
+        }
+        dados.push(cabecalhos);
+        
+        for (let i = 1; i < linhas.length; i++) {
+            const linha = [];
+            const tds = linhas[i].getElementsByTagName('td');
+            for (let j = 0; j < tds.length - 1; j++) {
+                let valor = tds[j].innerText.replace(/<[^>]*>/g, '');
+                linha.push(valor);
+            }
+            dados.push(linha);
+        }
+        
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(dados);
+        
+        const colWidths = [
+            { wch: 15 }, { wch: 40 }, { wch: 8 }, { wch: 10 },
+            { wch: 10 }, { wch: 8 }, { wch: 15 }, { wch: 20 }, { wch: 12 }
+        ];
+        ws['!cols'] = colWidths;
+        
+        XLSX.utils.book_append_sheet(wb, ws, 'Inventário');
+        
+        const dataAtual = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+        const horaAtual = new Date().toLocaleTimeString('pt-BR').replace(/:/g, '-');
+        const almox = document.getElementById('almoxarifado').value.replace(/\s+/g, '_');
+        const nomeArquivo = `inventario_${almox}_${dataAtual}_${horaAtual}.xlsx`;
+        
+        // Verifica se está no Capacitor (Android)
+        if (CapacitorPlugins.isAvailable && CapacitorPlugins.Filesystem && CapacitorPlugins.Directory) {
+            const temPermissao = await verificarPermissaoAndroid();
+            if (!temPermissao) {
+                btn.innerText = textoOriginal;
+                btn.disabled = false;
+                return;
+            }
+            
+            try {
+                const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'base64' });
+                
+                // CORREÇÃO: Usa o caminho correto
+                const result = await CapacitorPlugins.Filesystem.writeFile({
+                    path: nomeArquivo,
+                    data: wbout,
+                    directory: CapacitorPlugins.Directory.Documents, // Usa Documents em vez de Download
+                    recursive: true
+                });
+                
+                console.log('Arquivo salvo:', result);
+                
+                if (confirm(`✅ Arquivo salvo com sucesso!\n\n📁 Pasta: Documents\n📄 Arquivo: ${nomeArquivo}\n\nDeseja compartilhar agora?`)) {
+                    await compartilharArquivo(result.uri, nomeArquivo, 'excel');
+                }
+                
+            } catch (error) {
+                console.error('Erro ao salvar no dispositivo:', error);
+                
+                // Tenta com External como fallback
+                try {
+                    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'base64' });
+                    const result = await CapacitorPlugins.Filesystem.writeFile({
+                        path: nomeArquivo,
+                        data: wbout,
+                        directory: CapacitorPlugins.Directory.External,
+                        recursive: true
+                    });
+                    
+                    if (confirm(`✅ Arquivo salvo em External!\n\nCompartilhar?`)) {
+                        await compartilharArquivo(result.uri, nomeArquivo, 'excel');
+                    }
+                    
+                } catch (fallbackError) {
+                    if (confirm('❌ Erro ao salvar. Deseja baixar no navegador?')) {
+                        XLSX.writeFile(wb, nomeArquivo);
+                    }
+                }
+            }
+        } else {
+            XLSX.writeFile(wb, nomeArquivo);
+            alert(`✅ Arquivo Excel gerado: ${nomeArquivo}`);
+        }
+        
+    } catch (error) {
+        console.error('Erro ao exportar Excel:', error);
+        alert('❌ Erro: ' + error.message);
+    } finally {
+        const btn = event?.target || document.querySelector('.btn-excel');
+        if (btn) {
+            btn.innerText = '📊 Exportar para Excel';
+            btn.disabled = false;
+        }
+    }
+}
+
+async function exportarPDF() {
+    try {
+        const btn = event?.target || document.querySelector('.btn-pdf');
+        if (!btn) return;
+        
+        const textoOriginal = btn.innerText;
+        btn.innerText = '⏳ Gerando PDF...';
+        btn.disabled = true;
+        
+        if (typeof window.jspdf === 'undefined') {
+            alert('❌ Biblioteca jsPDF não carregada.');
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+            return;
+        }
+        
+        const { jsPDF } = window.jspdf;
+        
+        const tabela = document.getElementById('tabelaRelatorio');
+        if (!tabela) {
+            alert('❌ Tabela não encontrada');
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+            return;
+        }
+        
+        const linhas = tabela.getElementsByTagName('tr');
+        if (linhas.length <= 1) {
+            alert('⚠️ Não há dados no relatório');
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+            return;
+        }
+        
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        const almox = document.getElementById('almoxarifado').value;
+        const dataAtual = new Date().toLocaleDateString('pt-BR');
+        const horaAtual = new Date().toLocaleTimeString('pt-BR');
+        
+        doc.setFontSize(16);
+        doc.setTextColor(30, 58, 90);
+        doc.text(`RELATÓRIO DE INVENTÁRIO - ${almox.toUpperCase()}`, 14, 15);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100, 116, 139);
+        doc.text(`Data/Hora: ${dataAtual} ${horaAtual}`, 14, 22);
+        
+        const inventariante = document.getElementById('inventariante').value || 'Não informado';
+        doc.text(`Inventariante: ${inventariante}`, 14, 27);
+        
+        const cabecalhos = [];
+        const ths = linhas[0].getElementsByTagName('th');
+        for (let i = 0; i < ths.length - 1; i++) {
+            cabecalhos.push(ths[i].innerText);
+        }
+        
+        const dados = [];
+        for (let i = 1; i < linhas.length; i++) {
+            const linha = [];
+            const tds = linhas[i].getElementsByTagName('td');
+            for (let j = 0; j < tds.length - 1; j++) {
+                let valor = tds[j].innerText.replace(/<[^>]*>/g, '');
+                linha.push(valor);
+            }
+            dados.push(linha);
+        }
+        
+        if (typeof doc.autoTable === 'function') {
+            doc.autoTable({
+                head: [cabecalhos],
+                body: dados,
+                startY: 32,
+                theme: 'grid',
+                styles: { fontSize: 7, cellPadding: 1.5 },
+                headStyles: {
+                    fillColor: [30, 58, 90],
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold',
+                    halign: 'center'
+                }
+            });
+        }
+        
+        const nomeArquivo = `inventario_${almox.replace(/\s+/g, '_')}_${dataAtual.replace(/\//g, '-')}.pdf`;
+        
+        if (CapacitorPlugins.isAvailable && CapacitorPlugins.Filesystem && CapacitorPlugins.Directory) {
+            const temPermissao = await verificarPermissaoAndroid();
+            if (!temPermissao) {
+                btn.innerText = textoOriginal;
+                btn.disabled = false;
+                return;
+            }
+            
+            try {
+                const pdfBase64 = doc.output('datauristring').split(',')[1];
+                
+                const result = await CapacitorPlugins.Filesystem.writeFile({
+                    path: nomeArquivo,
+                    data: pdfBase64,
+                    directory: CapacitorPlugins.Directory.Documents,
+                    recursive: true
+                });
+                
+                if (confirm(`✅ PDF salvo com sucesso!\n\nCompartilhar?`)) {
+                    await compartilharArquivo(result.uri, nomeArquivo, 'pdf');
+                }
+                
+            } catch (error) {
+                console.error('Erro ao salvar PDF:', error);
+                if (confirm('❌ Erro ao salvar. Deseja baixar no navegador?')) {
+                    doc.save(nomeArquivo);
+                }
+            }
+        } else {
+            doc.save(nomeArquivo);
+            alert(`✅ PDF gerado: ${nomeArquivo}`);
+        }
+        
+    } catch (error) {
+        console.error('Erro ao gerar PDF:', error);
+        alert('❌ Erro: ' + error.message);
+    } finally {
+        const btn = event?.target || document.querySelector('.btn-pdf');
+        if (btn) {
+            btn.innerText = '📄 Gerar PDF';
+            btn.disabled = false;
+        }
+    }
+}
+
+// ============================================
+// FUNÇÃO PARA ABRIR ARQUIVO (opcional)
+// ============================================
+
+async function abrirArquivo(nomeArquivo) {
+    if (!CapacitorPlugins.isAvailable) {
+        alert('Função disponível apenas no dispositivo Android');
+        return;
+    }
+    
+    try {
+        // Verifica se o arquivo existe
+        const result = await CapacitorPlugins.Filesystem.readFile({
+            path: `Download/${nomeArquivo}`,
+            directory: CapacitorPlugins.Directory.External
+        });
+        
+        // Aqui você pode implementar a abertura do arquivo
+        // Por enquanto, apenas informa que o arquivo existe
+        alert(`📁 Arquivo encontrado:\nDownload/${nomeArquivo}`);
+        
+    } catch (error) {
+        console.error('Erro ao abrir arquivo:', error);
+        alert('❌ Arquivo não encontrado');
+    }
+}
+
+// ============================================
 // EXPORTA FUNÇÕES PARA O ESCOPO GLOBAL
 // ============================================
 window.toggleObs = toggleObs;
@@ -4990,8 +5680,9 @@ window.salvarEdicao = salvarEdicao;
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     initCapacitor();
+    verificarBibliotecas(); // Adicione esta linha se quiser
     
-    // Remove a linha problemática (dataInventario não existe)
+    // Remove a linha problemática
     // document.getElementById('dataInventario').valueAsDate = new Date();
     
     atualizarListas();
