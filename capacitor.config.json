@@ -1,0 +1,9 @@
+{
+  "appId": "com.example.acheck",
+  "appName": "ACheck",
+  "webDir": "www",
+  "server": {
+    "url": "http://192.168.15.11:5173",
+    "cleartext": true
+  }
+}
