@@ -784,6 +784,471 @@ td {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* ===== BOTÃO LIMPAR RELATÓRIO ===== */
+.btn-limpar-relatorio {
+    background: #fff1f2;
+    border: 2px solid #fecdd3;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 10px 18px;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-limpar-relatorio svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    transition: 0.3s;
+}
+
+.btn-limpar-relatorio:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(211,47,47,0.3);
+    color: white;
+}
+
+.btn-limpar-relatorio:hover svg {
+    color: white;
+}
+
+/* Modal de confirmação melhorado */
+.modal-confirmacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-confirmacao-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.modal-confirmacao-header {
+    padding: 20px 24px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-confirmacao-body {
+    padding: 24px;
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.modal-confirmacao-body strong {
+    color: var(--accent);
+    font-size: 1.2rem;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.modal-confirmacao-footer {
+    padding: 16px 24px 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    border-top: 2px solid #f1f5f9;
+}
+
+.btn-confirmar-limpar {
+    padding: 12px 24px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+.btn-confirmar-limpar:hover {
+    background: #b71c1c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(211,47,47,0.3);
+}
+
+.btn-cancelar-limpar {
+    padding: 12px 24px;
+    background: #f1f5f9;
+    color: var(--text);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+.btn-cancelar-limpar:hover {
+    background: #e2e8f0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Ajuste responsivo */
+@media (max-width: 600px) {
+    .btn-limpar-relatorio span {
+        display: none; /* Esconde o texto em mobile */
+    }
+    
+    .btn-limpar-relatorio {
+        padding: 10px;
+    }
+    
+    .btn-limpar-relatorio svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Botões de ação para produtos */
+.btn-acao-produto {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.btn-editar-produto {
+    color: #1e3a5a;
+}
+
+.btn-editar-produto:hover {
+    background: #1e3a5a;
+    color: white;
+}
+
+.btn-excluir-produto {
+    color: #d32f2f;
+}
+
+.btn-excluir-produto:hover {
+    background: #d32f2f;
+    color: white;
+}
+
+/* Modal para edição */
+.modal-edicao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.modal-edicao-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.modal-edicao-header {
+    padding: 20px 24px;
+    background: var(--primary);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-edicao-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.modal-edicao-body {
+    padding: 24px;
+}
+
+.modal-edicao-footer {
+    padding: 20px 24px;
+    border-top: 2px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.no-export {
+    white-space: nowrap;
+    min-width: 100px;
+}
+
+/* Botões de ação no relatório */
+.btn-acao-relatorio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-editar-relatorio {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-editar-relatorio:hover {
+    background: #152940;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(30,58,90,0.3);
+}
+
+.btn-excluir-relatorio {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-excluir-relatorio:hover {
+    background: #b71c1c;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(211,47,47,0.3);
+}
+
+/* Para telas pequenas, ajusta o layout */
+@media (max-width: 768px) {
+    .no-export {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn-acao-relatorio {
+        width: 100%;
+        margin: 2px 0;
+    }
+}
+
+.modal-edicao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-edicao-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-edicao-header {
+    padding: 20px 24px;
+    background: var(--primary);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.modal-edicao-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-edicao-body {
+    padding: 24px;
+    max-height: calc(90vh - 140px);
+    overflow-y: auto;
+}
+
+.modal-edicao-footer {
+    padding: 20px 24px;
+    border-top: 2px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Campos readonly no modal */
+.modal-edicao-body input[readonly] {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Botões de ação no relatório */
+.btn-acao-relatorio {
+    transition: all 0.2s ease;
+    border: none !important;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.btn-acao-relatorio:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-editar-relatorio:hover {
+    background: #152940 !important;
+}
+
+.btn-excluir-relatorio:hover {
+    background: #b71c1c !important;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-edicao-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-edicao-body {
+        padding: 16px;
+    }
+    
+    .modal-edicao-footer {
+        padding: 16px;
+        flex-direction: column;
+    }
+    
+    .modal-edicao-footer button {
+        width: 100%;
+    }
+    
+    .no-export {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn-acao-relatorio {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -791,11 +1256,11 @@ td {
 <div class="container">
     <div class="header-acheck">
         <h1>A<span>Check</span></h1>
-        <p style="margin-top: -10px; color: #64748b; font-weight: 500;">Gestão de Inventário</p>
+        <p style="margin-top: -10px; color: #64748b; font-weight: 500;">Gestão de Inventário Coasal</p>
     </div>
 
     <div class="card card-cadastro">
-    <h2>➕ Cadastro Rápido de Novo Item</h2>
+    <h2>CADASTRO DE ITEM</h2>
     <div class="grid">
         <div class="field">
             <label>Almoxarifado</label>
@@ -831,11 +1296,34 @@ td {
         </div>
     </div>
     <button class="btn-salvar btn-adicionar" onclick="cadastrarProdutoManual()">
-        📦 INCLUIR NO ALMOXARIFADO SELECIONADO
+        INCLUIR NO ALMOXARIFADO SELECIONADO
     </button>
 </div>
 
+<!-- CARD DE GERENCIAMENTO DE PRODUTOS -->
+<div class="card" style="margin-top: 15px;">
+    <h2>GERENCIAMENTO DE PRODUTOS</h2>
+    <div class="field">
+        <label>Selecione o Almoxarifado</label>
+        <select id="almoxProdutos" onchange="listarProdutosParaGerenciar()">
+            <option value="Almoxarifado Central">Almoxarifado Central</option>
+            <option value="Almoxarifado de Alimentícios">Almoxarifado de Alimentícios</option>
+            <option value="Almoxarifado do Serviço Médico">Almoxarifado do Serviço Médico</option>
+            <option value="Almoxarifado de Informática">Almoxarifado de Informática</option>
+            <option value="Almoxarifado de Produtos Gráficos">Almoxarifado de Produtos Gráficos</option>
+        </select>
+    </div>
+    <div class="field">
+        <label>Buscar produto</label>
+        <input type="text" id="buscaProduto" placeholder="Digite código ou nome..." oninput="listarProdutosParaGerenciar()">
+    </div>
+    <div id="listaProdutosGerenciar" style="max-height: 400px; overflow-y: auto; margin-top: 15px;">
+        <!-- Lista será preenchida aqui -->
+    </div>
+</div>
+
     <div class="card">
+        <h2>INVENTÁRIO</h2>
         <div class="grid">
             <div class="field full-width">
                 <label>Almoxarifado Alvo</label>
@@ -911,7 +1399,7 @@ td {
 <div id="painelInventariantes" class="card" style="display: none; margin-top: 15px;">
     <div class="painel-header">
         <h3>
-            📋 Inventariantes Cadastrados
+            Inventariantes Cadastrados
             <span id="contadorInventariantes" class="inventariante-badge">0</span>
         </h3>
         <button class="btn-fechar-painel" onclick="fecharPainelInventariantes()" title="Fechar">×</button>
@@ -920,7 +1408,7 @@ td {
 </div>
 
         <div class="titulo-com-acao">
-            <h2>🔍 Seleção de Item</h2>
+            <h2> SELEÇÃO DE ITEM</h2>
             <button class="btn-lixeira" onclick="limparCamposBusca()" title="Limpar campos">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -967,7 +1455,7 @@ td {
     </div>
 </div>
 
-        <h2>⚖️ Cálculo de Contagem Física</h2>
+        <h2>Cálculo de Contagem Física</h2>
         <div class="grid grid-6">
             <div class="field"><label>Paletes</label><input type="number" id="qtdPaletes" value="0" oninput="calcular()"></div>
             <div class="field"><label>Cx/Palete</label><input type="number" id="cxPorPalete" value="0" oninput="calcular()"></div>
@@ -982,7 +1470,7 @@ td {
             </div>
         </div>
 
-        <h2>✅ Qualidade</h2>
+        <h2>Qualidade</h2>
         <div class="check-group">
             <div class="check-header">
                 <label>Integridade Embalagem</label>
@@ -1004,7 +1492,7 @@ td {
             <input type="text" id="obsVal" class="obs-field" placeholder="Informação de validade...">
         </div>
 
-        <h2>📊 Confronto com Spalm</h2>
+        <h2>Confronto com Spalm</h2>
         <div class="grid">
             <div class="field"><label>Saldo em Spalm</label><input type="number" id="saldoSpalm" value="0" oninput="calcular()"></div>
             <div class="field"><label>Diferença</label><input type="number" id="diferenca" readonly></div>
@@ -1017,12 +1505,13 @@ td {
         <button class="btn-salvar" onclick="salvarNoRelatorio()">CONFIRMAR E LANÇAR NO RELATÓRIO</button>
     </div>
 
-    <h2 id="tituloRelatorio" style="justify-content: center;">RELATÓRIO DE AUDITORIA</h2>
-    
-    <div class="export-group">
-        <button onclick="exportarExcel()" class="btn-export btn-excel">📊 Exportar para Excel</button>
-        <button onclick="exportarPDF()" class="btn-export btn-pdf">📄 Gerar PDF</button>
-    </div>
+    <h2 id="tituloRelatorio" style="justify-content: center; margin-bottom: 10px;">RELATÓRIO DE AUDITORIA</h2>
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+    <button onclick="confirmarLimparRelatorio()" style="background: #d32f2f; color: white; border: none; border-radius: 10px; padding: 12px 20px; font-weight: bold; cursor: pointer; width: 100%;">
+        LIMPAR RELATÓRIO
+    </button>
+</div>
 
     <div class="relatorio-container">
         <table id="tabelaRelatorio">
@@ -1043,7 +1532,20 @@ td {
             <tbody></tbody>
         </table>
     </div>
+    <!-- BOTÕES AZUIS EM BAIXO DO RELATÓRIO -->
+<div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
+    <button onclick="exportarExcel()" style="background: #1e3a5a; color: white; border: none; border-radius: 10px; padding: 12px 30px; font-weight: bold; cursor: pointer; flex: 1; max-width: 250px;">
+        EXPORTAR EXCEL
+    </button>
+    <button onclick="exportarPDF()" style="background: #1e3a5a; color: white; border: none; border-radius: 10px; padding: 12px 30px; font-weight: bold; cursor: pointer; flex: 1; max-width: 250px;">
+        EXPORTAR PDF
+    </button>
 </div>
+
+
+</div>
+
+
 
 <script>
 // ============================================
@@ -4328,6 +4830,197 @@ document.addEventListener('DOMContentLoaded', () => {
 { almox: "Almoxarifado de Informática", cod: "03.52.17.0435-1", nome: "TOMADA (CONECTOR) RJ-45 FÊMEA CAT.6 AMP", unid: "UNIDADE" },
 { almox: "Almoxarifado de Informática", cod: "03.52.40.0339-7", nome: "TOMADA PADRÃO RJ45 FÊMEA CATEGORIA 5E.", unid: "PEÇA" }
     ];
+
+// ============================================
+// GERENCIAR PRODUTOS (EDITAR/EXCLUIR)
+// ============================================
+
+function listarProdutosParaGerenciar() {
+    const almox = document.getElementById('almoxProdutos').value;
+    const busca = document.getElementById('buscaProduto').value.trim().toUpperCase();
+    const container = document.getElementById('listaProdutosGerenciar');
+    
+    let produtosFiltrados = produtos.filter(p => p.almox === almox);
+    
+    if (busca.length > 0) {
+        produtosFiltrados = produtosFiltrados.filter(p => 
+            p.cod.toUpperCase().includes(busca) || 
+            p.nome.toUpperCase().includes(busca)
+        );
+    }
+    
+    if (produtosFiltrados.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #64748b;">
+                <p>Nenhum produto encontrado</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = produtosFiltrados
+        .sort((a, b) => a.nome.localeCompare(b.nome))
+        .map(produto => {
+            const produtoEscaped = JSON.stringify(produto).replace(/'/g, "\\'");
+            return `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; margin-bottom: 10px; background: #f8fafc; border-radius: 10px; border: 2px solid #e2e8f0;">
+                    <div style="flex: 1;">
+                        <div style="font-weight: bold; color: var(--primary); font-size: 0.9rem;">${produto.cod}</div>
+                        <div style="color: var(--text);">${produto.nome}</div>
+                        <div style="color: #64748b; font-size: 0.8rem;">${produto.unid}</div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn-acao-produto btn-editar-produto" onclick='editarProduto(${JSON.stringify(produto).replace(/'/g, "\\'")})' title="Editar">✏️</button>
+                        <button class="btn-acao-produto btn-excluir-produto" onclick='excluirProduto("${produto.cod}", "${produto.almox}")' title="Excluir">🗑️</button>
+                    </div>
+                </div>
+            `;
+        })
+        .join('');
+}
+
+function editarProduto(produto) {
+    const modalHtml = `
+        <div class="modal-edicao" id="modalEdicaoProduto">
+            <div class="modal-edicao-content">
+                <div class="modal-edicao-header">
+                    <h3>✏️ Editar Produto</h3>
+                    <button class="modal-close" onclick="fecharModalEdicao()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+                </div>
+                <div class="modal-edicao-body">
+                    <div class="field">
+                        <label>Código Spalm</label>
+                        <input type="text" id="editCod" value="${produto.cod}" placeholder="00.00.00.0000-0">
+                    </div>
+                    <div class="field">
+                        <label>Descrição do Produto</label>
+                        <input type="text" id="editNome" value="${produto.nome}" placeholder="Nome do produto">
+                    </div>
+                    <div class="field">
+                        <label>Unidade</label>
+                        <select id="editUnid">
+                            <option value="UNIDADE" ${produto.unid === 'UNIDADE' ? 'selected' : ''}>UNIDADE</option>
+                            <option value="QUILOGRAMA" ${produto.unid === 'QUILOGRAMA' ? 'selected' : ''}>QUILOGRAMA</option>
+                            <option value="LITRO" ${produto.unid === 'LITRO' ? 'selected' : ''}>LITRO</option>
+                            <option value="CAIXA" ${produto.unid === 'CAIXA' ? 'selected' : ''}>CAIXA</option>
+                            <option value="PACOTE" ${produto.unid === 'PACOTE' ? 'selected' : ''}>PACOTE</option>
+                            <option value="FRASCO" ${produto.unid === 'FRASCO' ? 'selected' : ''}>FRASCO</option>
+                            <option value="PEÇA" ${produto.unid === 'PEÇA' ? 'selected' : ''}>PEÇA</option>
+                            <option value="METRO" ${produto.unid === 'METRO' ? 'selected' : ''}>METRO</option>
+                            <option value="ROLO" ${produto.unid === 'ROLO' ? 'selected' : ''}>ROLO</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Almoxarifado</label>
+                        <select id="editAlmox">
+                            <option value="Almoxarifado Central" ${produto.almox === 'Almoxarifado Central' ? 'selected' : ''}>Almoxarifado Central</option>
+                            <option value="Almoxarifado de Alimentícios" ${produto.almox === 'Almoxarifado de Alimentícios' ? 'selected' : ''}>Almoxarifado de Alimentícios</option>
+                            <option value="Almoxarifado do Serviço Médico" ${produto.almox === 'Almoxarifado do Serviço Médico' ? 'selected' : ''}>Almoxarifado do Serviço Médico</option>
+                            <option value="Almoxarifado de Informática" ${produto.almox === 'Almoxarifado de Informática' ? 'selected' : ''}>Almoxarifado de Informática</option>
+                            <option value="Almoxarifado de Produtos Gráficos" ${produto.almox === 'Almoxarifado de Produtos Gráficos' ? 'selected' : ''}>Almoxarifado de Produtos Gráficos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-edicao-footer">
+                    <button class="btn-cancelar" onclick="fecharModalEdicao()">Cancelar</button>
+                    <button class="btn-salvar" onclick="salvarEdicaoProduto('${produto.cod}', '${produto.almox}')">Salvar</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function fecharModalEdicao() {
+    const modal = document.getElementById('modalEdicaoProduto');
+    if (modal) modal.remove();
+}
+
+function salvarEdicaoProduto(codAntigo, almoxAntigo) {
+    const novoCod = document.getElementById('editCod').value.trim().toUpperCase();
+    const novoNome = document.getElementById('editNome').value.trim().toUpperCase();
+    const novaUnid = document.getElementById('editUnid').value;
+    const novoAlmox = document.getElementById('editAlmox').value;
+    
+    if (!novoCod || !novoNome) {
+        alert('Código e descrição são obrigatórios!');
+        return;
+    }
+    
+    // Encontra o produto
+    const index = produtos.findIndex(p => p.cod === codAntigo && p.almox === almoxAntigo);
+    
+    if (index === -1) {
+        alert('Produto não encontrado!');
+        fecharModalEdicao();
+        return;
+    }
+    
+    // Verifica se já existe outro produto com o mesmo código no mesmo almoxarifado
+    if (codAntigo !== novoCod || almoxAntigo !== novoAlmox) {
+        const existente = produtos.find(p => 
+            p.cod === novoCod && p.almox === novoAlmox && 
+            !(p.cod === codAntigo && p.almox === almoxAntigo)
+        );
+        
+        if (existente) {
+            alert('Já existe um produto com este código neste almoxarifado!');
+            return;
+        }
+    }
+    
+    // Atualiza o produto
+    produtos[index] = {
+        almox: novoAlmox,
+        cod: novoCod,
+        nome: novoNome,
+        unid: novaUnid
+    };
+    
+    alert('✅ Produto atualizado com sucesso!');
+    fecharModalEdicao();
+    
+    // Atualiza as listas
+    listarProdutosParaGerenciar();
+    atualizarListas();
+}
+
+function excluirProduto(cod, almox) {
+    if (confirm(`⚠️ Deseja realmente excluir o produto?\n\nCódigo: ${cod}\nAlmoxarifado: ${almox}`)) {
+        const index = produtos.findIndex(p => p.cod === cod && p.almox === almox);
+        
+        if (index !== -1) {
+            produtos.splice(index, 1);
+            alert('✅ Produto excluído com sucesso!');
+            listarProdutosParaGerenciar();
+            atualizarListas();
+        }
+    }
+}
+
+// Função para limpar todo o relatório
+function limparRelatorio() {
+    const tbody = document.getElementById('tabelaRelatorio').getElementsByTagName('tbody')[0];
+    tbody.innerHTML = '';
+}
+
+// Função para confirmar antes de limpar
+function confirmarLimparRelatorio() {
+    const tbody = document.getElementById('tabelaRelatorio').getElementsByTagName('tbody')[0];
+    const totalLinhas = tbody.getElementsByTagName('tr').length;
+    
+    if (totalLinhas === 0) {
+        alert('O relatório já está vazio!');
+        return;
+    }
+    
+    if (confirm(`⚠️ Deseja realmente remover TODOS os ${totalLinhas} itens do relatório?`)) {
+        limparRelatorio();
+    }
+}
+
+
 // ============================================
 // BUSCA EM TEMPO REAL NO INPUT
 // ============================================
@@ -4720,21 +5413,26 @@ function salvarNoRelatorio() {
     const row = tbody.insertRow(0);
 
     row.innerHTML = `
-        <td>${cod}</td>
-        <td><b>${item}</b></td>
-        <td>${document.getElementById('unidadeMedida').value}</td>
-        <td><b>${document.getElementById('totalGeral').value}</b></td>
-        <td>${document.getElementById('saldoSpalm').value}</td>
-        <td style="color:${document.getElementById('diferenca').value < 0 ? 'red' : 'green'}">
-            <b>${document.getElementById('diferenca').value}</b>
-        </td>
-        <td>E:${embStatus} | V:${valStatus}</td>
-        <td>${situacaoTxt}</td>
-        <td>${new Date().toLocaleDateString('pt-BR')}</td>
-        <td class="no-export">
-            <button class="btn-excluir" onclick="this.closest('tr').remove()">DEL</button>
-        </td>
-    `;
+    <td>${cod}</td>
+    <td><b>${item}</b></td>
+    <td>${document.getElementById('unidadeMedida').value}</td>
+    <td><b>${document.getElementById('totalGeral').value}</b></td>
+    <td>${document.getElementById('saldoSpalm').value}</td>
+    <td style="color:${document.getElementById('diferenca').value < 0 ? 'red' : 'green'}">
+        <b>${document.getElementById('diferenca').value}</b>
+    </td>
+    <td>E:${embStatus} | V:${valStatus}</td>
+    <td>${situacaoTxt}</td>
+    <td>${new Date().toLocaleDateString('pt-BR')}</td>
+    <td class="no-export" style="display: flex; gap: 5px; justify-content: center;">
+        <button class="btn-acao-relatorio btn-editar-relatorio" onclick="editarItemRelatorio(this)" title="Editar item" style="background: #1e3a5a; color: white; border: none; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+            EDIT
+        </button>
+        <button class="btn-acao-relatorio btn-excluir-relatorio" onclick="this.closest('tr').remove()" title="Excluir item" style="background: #d32f2f; color: white; border: none; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+            DEL
+        </button>
+    </td>
+`;
 
     limparCamposBusca();
 }
@@ -5698,6 +6396,281 @@ async function abrirArquivo(nomeArquivo) {
 }
 
 // ============================================
+// FUNÇÃO PARA EDITAR ITEM DO RELATÓRIO (COM MODAL)
+// ============================================
+
+function editarItemRelatorio(botao) {
+    const linha = botao.closest('tr');
+    const colunas = linha.getElementsByTagName('td');
+    
+    // Extrai os dados atuais da linha
+    const dadosItem = {
+        codigo: colunas[0].innerText,
+        item: colunas[1].innerText.replace(/<[^>]*>/g, ''),
+        unidade: colunas[2].innerText,
+        totalFisico: colunas[3].innerText.replace(/<[^>]*>/g, ''),
+        saldoSpalm: colunas[4].innerText,
+        diferenca: colunas[5].innerText.replace(/<[^>]*>/g, ''),
+        qualidade: colunas[6].innerText,
+        situacao: colunas[7].innerText,
+        data: colunas[8].innerText,
+        linhaReferencia: linha // Guarda referência da linha original
+    };
+    
+    // Extrai status de embalagem e validade
+    const qualidadeParts = dadosItem.qualidade.split(' | ');
+    const embStatus = qualidadeParts[0]?.replace('E:', '') || 'OK';
+    const valStatus = qualidadeParts[1]?.replace('V:', '') || 'OK';
+    
+    // Cria o modal de edição
+    const modalEdit = document.createElement('div');
+    modalEdit.className = 'modal-edicao';
+    modalEdit.id = 'modalEdicaoRelatorio';
+    modalEdit.innerHTML = `
+        <div class="modal-edicao-content">
+            <div class="modal-edicao-header">
+                <h3>✏️ Editar Item do Relatório</h3>
+                <button class="modal-close" onclick="fecharModalEdicaoRelatorio()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+            </div>
+            <div class="modal-edicao-body">
+                <div class="grid">
+                    <div class="field full-width">
+                        <label>Código Spalm</label>
+                        <input type="text" id="editRelCodigo" value="${dadosItem.codigo}" readonly style="background: #f1f5f9;">
+                    </div>
+                    <div class="field full-width">
+                        <label>Descrição do Item</label>
+                        <input type="text" id="editRelItem" value="${dadosItem.item}" readonly style="background: #f1f5f9;">
+                    </div>
+                    <div class="field">
+                        <label>Unidade</label>
+                        <input type="text" id="editRelUnidade" value="${dadosItem.unidade}" readonly style="background: #f1f5f9;">
+                    </div>
+                    
+                    <h2 style="grid-column: 1 / -1; font-size: 0.9rem; margin: 10px 0;">⚖️ Cálculo de Contagem Física</h2>
+                    
+                    <div class="field">
+                        <label>Total Físico Contado</label>
+                        <input type="number" id="editRelTotalFisico" value="${dadosItem.totalFisico}" step="any" oninput="calcularDiferencaEdicao()">
+                    </div>
+                    
+                    <div class="field">
+                        <label>Saldo em Spalm</label>
+                        <input type="number" id="editRelSaldoSpalm" value="${dadosItem.saldoSpalm}" step="any" oninput="calcularDiferencaEdicao()">
+                    </div>
+                    
+                    <div class="field">
+                        <label>Diferença</label>
+                        <input type="number" id="editRelDiferenca" value="${dadosItem.diferenca}" readonly style="background: #f1f5f9; color: ${parseFloat(dadosItem.diferenca) < 0 ? '#d32f2f' : '#2ecc71'}; font-weight: bold;">
+                    </div>
+                    
+                    <h2 style="grid-column: 1 / -1; font-size: 0.9rem; margin: 10px 0;">✅ Qualidade</h2>
+                    
+                    <div class="field" style="grid-column: 1 / -1;">
+                        <label>Integridade Embalagem</label>
+                        <div style="display: flex; gap: 20px; margin-top: 5px;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="editRelEmb" value="OK" ${embStatus === 'OK' ? 'checked' : ''} onchange="toggleObsEdit('editRelObsEmb', false)"> Conforme
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="editRelEmb" value="AVARIA" ${embStatus === 'AVARIA' ? 'checked' : ''} onchange="toggleObsEdit('editRelObsEmb', true)"> Avaria
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="field full-width">
+                        <input type="text" id="editRelObsEmb" class="obs-field" placeholder="Ex: Amassado, Rasgado..." style="display: ${embStatus === 'AVARIA' ? 'block' : 'none'};">
+                    </div>
+                    
+                    <div class="field" style="grid-column: 1 / -1;">
+                        <label>Validade</label>
+                        <div style="display: flex; gap: 20px; margin-top: 5px;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="editRelVal" value="OK" ${valStatus === 'OK' ? 'checked' : ''} onchange="toggleObsEdit('editRelObsVal', false)"> Vigente
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="editRelVal" value="VENCIDO" ${valStatus === 'VENCIDO' ? 'checked' : ''} onchange="toggleObsEdit('editRelObsVal', true)"> Vencido/Próximo
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="field full-width">
+                        <input type="text" id="editRelObsVal" class="obs-field" placeholder="Informação de validade..." style="display: ${valStatus === 'VENCIDO' ? 'block' : 'none'};">
+                    </div>
+                    
+                    <div class="field full-width">
+                        <label>Observação/Situação</label>
+                        <input type="text" id="editRelSituacao" value="${dadosItem.situacao}" placeholder="Observações adicionais...">
+                    </div>
+                    
+                    <div class="field">
+                        <label>Data</label>
+                        <input type="text" id="editRelData" value="${dadosItem.data}" readonly style="background: #f1f5f9;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-edicao-footer">
+                <button class="btn-cancelar" onclick="fecharModalEdicaoRelatorio()">Cancelar</button>
+                <button class="btn-salvar" onclick="salvarEdicaoRelatorio('${dadosItem.codigo}')">Salvar Alterações</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modalEdit);
+    
+    // Preenche as observações se existirem
+    setTimeout(() => {
+        if (dadosItem.situacao && dadosItem.situacao !== 'NORMAL') {
+            const obsEmbInput = document.getElementById('editRelObsEmb');
+            const obsValInput = document.getElementById('editRelObsVal');
+            
+            // Tenta separar as observações (formato comum: "obs1 / obs2")
+            const obsParts = dadosItem.situacao.split(' / ');
+            if (obsParts.length >= 1 && embStatus === 'AVARIA') {
+                obsEmbInput.value = obsParts[0];
+            }
+            if (obsParts.length >= 2 && valStatus === 'VENCIDO') {
+                obsValInput.value = obsParts[1];
+            }
+        }
+    }, 100);
+}
+
+// ============================================
+// FUNÇÕES AUXILIARES PARA O MODAL DE EDIÇÃO
+// ============================================
+
+function fecharModalEdicaoRelatorio() {
+    const modal = document.getElementById('modalEdicaoRelatorio');
+    if (modal) modal.remove();
+}
+
+function toggleObsEdit(inputId, show) {
+    const el = document.getElementById(inputId);
+    if (el) {
+        el.style.display = show ? 'block' : 'none';
+        if (!show) el.value = "";
+    }
+}
+
+function calcularDiferencaEdicao() {
+    const total = parseFloat(document.getElementById('editRelTotalFisico').value) || 0;
+    const saldo = parseFloat(document.getElementById('editRelSaldoSpalm').value) || 0;
+    const diferenca = total - saldo;
+    
+    const campoDiferenca = document.getElementById('editRelDiferenca');
+    campoDiferenca.value = diferenca;
+    campoDiferenca.style.color = diferenca < 0 ? '#d32f2f' : '#2ecc71';
+}
+
+function salvarEdicaoRelatorio(codigoOriginal) {
+    // Encontra a linha original pelo código
+    const tabela = document.getElementById('tabelaRelatorio');
+    const linhas = tabela.getElementsByTagName('tr');
+    let linhaEncontrada = null;
+    
+    for (let i = 1; i < linhas.length; i++) {
+        const linha = linhas[i];
+        const primeiraCelula = linha.getElementsByTagName('td')[0];
+        if (primeiraCelula && primeiraCelula.innerText.trim() === codigoOriginal.trim()) {
+            linhaEncontrada = linha;
+            break;
+        }
+    }
+    
+    if (!linhaEncontrada) {
+        alert('❌ Erro: Item não encontrado no relatório');
+        fecharModalEdicaoRelatorio();
+        return;
+    }
+    
+    // Coleta os novos valores do modal
+    const totalFisico = document.getElementById('editRelTotalFisico').value;
+    const saldoSpalm = document.getElementById('editRelSaldoSpalm').value;
+    const diferenca = document.getElementById('editRelDiferenca').value;
+    
+    // Verifica se os radio buttons existem
+    const embRadios = document.getElementsByName('editRelEmb');
+    const valRadios = document.getElementsByName('editRelVal');
+    
+    if (!embRadios || embRadios.length === 0 || !valRadios || valRadios.length === 0) {
+        alert('❌ Erro: Elementos do modal não encontrados');
+        return;
+    }
+    
+    let embStatus = 'OK';
+    let valStatus = 'OK';
+    
+    for (let i = 0; i < embRadios.length; i++) {
+        if (embRadios[i].checked) {
+            embStatus = embRadios[i].value;
+            break;
+        }
+    }
+    
+    for (let i = 0; i < valRadios.length; i++) {
+        if (valRadios[i].checked) {
+            valStatus = valRadios[i].value;
+            break;
+        }
+    }
+    
+    const obsEmb = document.getElementById('editRelObsEmb')?.value || '';
+    const obsVal = document.getElementById('editRelObsVal')?.value || '';
+    const situacaoCustom = document.getElementById('editRelSituacao')?.value || '';
+    
+    // Monta a string de qualidade e situação
+    const qualidadeTxt = `E:${embStatus} | V:${valStatus}`;
+    let situacaoTxt = situacaoCustom;
+    
+    if (!situacaoTxt) {
+        situacaoTxt = [obsEmb, obsVal].filter(x => x).join(' / ') || 'NORMAL';
+    }
+    
+    // Atualiza as células da linha
+    const colunas = linhaEncontrada.getElementsByTagName('td');
+    
+    // Verifica se tem o número correto de colunas
+    if (colunas.length >= 9) {
+        // Índices: 0=codigo, 1=item, 2=unid, 3=fisico, 4=spalm, 5=dif, 6=qualidade, 7=situacao, 8=data, 9=acoes
+        colunas[3].innerHTML = `<b>${totalFisico}</b>`;
+        colunas[4].innerText = saldoSpalm;
+        colunas[5].innerHTML = `<b style="color:${parseFloat(diferenca) < 0 ? 'red' : 'green'}">${diferenca}</b>`;
+        colunas[6].innerText = qualidadeTxt;
+        colunas[7].innerText = situacaoTxt;
+        
+        // Feedback visual
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: slideInRight 0.3s ease;
+            z-index: 9999;
+        `;
+        toast.textContent = '✅ Item atualizado com sucesso!';
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    } else {
+        alert('❌ Erro: Estrutura da tabela inválida');
+    }
+    
+    // Fecha o modal
+    fecharModalEdicaoRelatorio();
+}
+
+
+// ============================================
 // EXPORTA FUNÇÕES PARA O ESCOPO GLOBAL
 // ============================================
 window.toggleObs = toggleObs;
@@ -5710,6 +6683,18 @@ window.exportarExcel = exportarExcel;
 window.exportarPDF = exportarPDF;
 window.buscarCodigoEmTempoReal = buscarCodigoEmTempoReal;
 window.buscarNomeEmTempoReal = buscarNomeEmTempoReal;
+window.confirmarLimparRelatorio = confirmarLimparRelatorio;
+window.limparRelatorio = limparRelatorio;
+window.listarProdutosParaGerenciar = listarProdutosParaGerenciar;
+window.editarProduto = editarProduto;
+window.excluirProduto = excluirProduto;
+window.fecharModalEdicao = fecharModalEdicao;
+window.salvarEdicaoProduto = salvarEdicaoProduto;
+window.editarItemRelatorio = editarItemRelatorio;
+window.fecharModalEdicaoRelatorio = fecharModalEdicaoRelatorio;
+window.toggleObsEdit = toggleObsEdit;
+window.calcularDiferencaEdicao = calcularDiferencaEdicao;
+window.salvarEdicaoRelatorio = salvarEdicaoRelatorio;
 
 // ============================================
 // EXPORTA FUNÇÕES DE INVENTARIANTES

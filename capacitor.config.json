@@ -2,8 +2,6 @@
   "appId": "com.example.acheck",
   "appName": "ACheck",
   "webDir": "dist",
-  "server": {
-    "url": "https://fantola88.github.io/ACheck/",
-    "cleartext": true
-  }
+  "backgroundColor": "#f4f7f9",
+  "adjustMarginsForEdgeToEdge": "force"
 }
